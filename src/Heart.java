@@ -4,30 +4,45 @@ public class Heart {
     // Add remaining heart properties here...
     private int size;
     private int calories;
-    private double costPerPound;
+    private double cost;
     private boolean avaliable;
     private int stock;
+    private String Saying;
 
     // CONSTRUCTORS
     public Heart() {
         this.color = "";
         this.size = 0;
         this.calories = 0;
-        this.costPerPound = 0;
+        this.cost = 0;
         this.avaliable = false;
         this.stock = 0;
+        this.Saying = "";
         ;
 
     } // This is the default contructor
       // Add overloaded Constructor here...
 
-    public Heart(String color, int size, int calories, double costPerPound, boolean avaliable, int stock) {
+    /***
+     * Uses to store Heart Properties
+     * 
+     * @param color
+     * @param Saying
+     * @param size
+     * @param calories
+     * @param costPerPound
+     * @param avaliable
+     * @param stock
+     */
+    public Heart(String color, String Saying, int size, int calories, double cost, boolean avaliable,
+            int stock) {
         this.color = color;
         this.size = size;
         this.calories = calories;
-        this.costPerPound = costPerPound;
+        this.cost = cost;
         this.avaliable = avaliable;
         this.stock = stock;
+        this.Saying = Saying;
     }
 
     // ACCESSORS
@@ -44,8 +59,8 @@ public class Heart {
         return this.calories;
     }
 
-    public double getCostPerPound() {
-        return this.costPerPound;
+    public double getCost() {
+        return this.cost;
     }
 
     public boolean isAvaliable() {
@@ -54,6 +69,10 @@ public class Heart {
 
     public int getStock() {
         return this.stock;
+    }
+
+    public String Saying() {
+        return this.Saying;
     }
 
     // MUTATORS
@@ -71,8 +90,8 @@ public class Heart {
         this.calories = calories;
     }
 
-    public void setCostPerPound(double costPerPound) {
-        this.costPerPound = costPerPound;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 
     public void setAvaliable(boolean avaliable) {
@@ -85,7 +104,11 @@ public class Heart {
 
     // mutator method stuff
     public void adjPrice(int percentage) {
-        this.costPerPound += this.costPerPound * (percentage / 100);
+        this.cost += this.cost * (percentage / 100);
+    }
+
+    public void getSaying(String Saying) {
+        this.Saying = Saying;
     }
 
     public void inStock() {
@@ -97,10 +120,29 @@ public class Heart {
 
     // METHODS
     public String getReport() {
-        String report = "Color is :" + this.color + "\n size is: " + this.size + "\nAmount of Calories: " +
-                this.calories + "\ncost per pound:" + this.costPerPound + "\navailability: " + this.avaliable
+        String report = "Color is: " + this.color +
+                "\nsize is: " + this.size + "\nSaying is: " + this.Saying + "\nAmount of Calories: " +
+                this.calories + "\ncost: " + this.cost + "\navailability: " + this.avaliable
                 + "\nIn Stock: " + this.stock;
 
         return report;
     }
+    /**
+     * Adjust Stocks at will while mainting positive values
+     * @param stock
+     */
+    public void adjStock(int stock) {
+        boolean available = false;
+        if (stock >= 0) {
+            this.stock = stock;
+        }
+        if (stock > 0) {
+            this.stock = stock;
+            available = true;
+
+        }
+        this.avaliable = available;
+    }
+    
+    
 }
